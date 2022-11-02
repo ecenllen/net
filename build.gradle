@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.ecenllen'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
+    allprojects {
+        repositories {
+            maven { url 'https://jitpack.io' }
+            jcenter()
+            google()
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+//    api files('libs/wechat-sdk-android-with-mta-1.0.2.jar')
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'
+    api files('libs/alipaySdk-15.7.9-20200727142846.aar')
+
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    api 'com.squareup.retrofit2:retrofit:2.6.2'
+    api 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    // eventBus
+    api 'org.greenrobot:eventbus:3.1.1'
+
+    api "com.github.bumptech.glide:glide:4.12.0"
+    api("com.github.bumptech.glide:recyclerview-integration:4.12.0") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
+    annotationProcessor "com.github.bumptech.glide:compiler:4.12.0"
+
+    api 'androidx.multidex:multidex:2.0.1'//Multiple dex files
+
+
+}

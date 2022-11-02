@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.viewstreetvr.net">
+
+
+    <application>
+        <!-- 支付宝支付 -->
+    </application>
+</manifest>
